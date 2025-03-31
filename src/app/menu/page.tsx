@@ -4,7 +4,7 @@ export default function Menu() {
     return (
         <>
             <Header />
-            <div className="w-screen h-screen bg-gray-600 text-black">
+            <div className="bg-gray-400 text-black w-full min-h-screen">
                 in development..
             </div>
         </>

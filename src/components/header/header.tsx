@@ -4,7 +4,7 @@ import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
     return (
-        <header className="w-full bg-white text-black px-10 py-5 flex items-center justify-between fixed top-0 left-0">
+        <header className="bg-white text-black px-10 py-5 flex items-center justify-between">
             <div
                 className="px-2 py-1 hover:bg-gray-200 transition-colors duration-200 rounded-sm"
                 onClick={console.log}>
