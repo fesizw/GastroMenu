@@ -1,7 +1,12 @@
+import Header from "@/components/header/header";
+
 export default function Menu() {
     return (
-        <div className="w-screen h-screen bg-white text-black">
-            in development..
-        </div>
+        <>
+            <Header />
+            <div className="w-screen h-screen bg-gray-600 text-black">
+                in development..
+            </div>
+        </>
     );
 }
