@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { StaticImageData } from 'next/image';
@@ -7,15 +7,25 @@ import Image from 'next/image';
 import restaurant1 from '@/assets/imageRestaurant1.jpg';
 import restaurant2 from '@/assets/imageRestaurant2.jpg';
 import restaurant3 from '@/assets/imageRestaurant3.jpg';
+import restaurant4 from '@/assets/imageRestaurant4.jpg';
 
 
 export default function Carousel() {
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        }, 10000);
+
+        return () => clearInterval(timer);
+    }, []);
+
     const images: StaticImageData[] = [
         restaurant1,
         restaurant2,
         restaurant3,
+        restaurant4
     ];
 
     const nextSlide = () => {
@@ -40,6 +50,7 @@ export default function Carousel() {
                             fill
                             className="object-cover"
                             priority={index === 0}
+                            quality={100} 
                         />
                     </div>
                 ))}
@@ -48,13 +59,13 @@ export default function Carousel() {
             {/* Navigation Buttons */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full cursor-pointer"
             >
                 <FontAwesomeIcon icon={faChevronLeft} className="text-white text-xl" />
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full cursor-pointer"
             >
                 <FontAwesomeIcon icon={faChevronRight} className="text-white text-xl" />
             </button>
@@ -65,8 +76,7 @@ export default function Carousel() {
                     <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`w-2 h-2 rounded-full transition-all ${currentSlide === index ? 'bg-white w-4' : 'bg-white/15'
-                            }`}
+                        className={`w-2 h-2 rounded-full transition-all cursor-pointer ${currentSlide === index ? 'bg-white w-4' : 'bg-white/50'}`}
                     />
                 ))}
             </div>
