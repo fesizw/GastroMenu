@@ -6,7 +6,7 @@ import { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import restaurant1 from '@/assets/imageRestaurant1.jpg';
 import restaurant2 from '@/assets/imageRestaurant2.jpg';
-import restaurant3 from '@/assets/imageRestaurant3.jpg';
+import restaurant3 from '@/assets/imageRestaurant3.png';
 import restaurant4 from '@/assets/imageRestaurant4.jpg';
 
 
