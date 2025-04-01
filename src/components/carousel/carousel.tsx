@@ -50,25 +50,24 @@ export default function Carousel() {
                             fill
                             className="object-cover"
                             priority={index === 0}
-                            quality={100} 
+                            quality={100}
+                            draggable={false}
                         />
                     </div>
                 ))}
             </div>
 
             {/* Navigation Buttons */}
-            <button
+            <div className="absolute left-0 top-0 h-full w-20 flex items-center justify-center cursor-pointer"
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full cursor-pointer"
             >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-white text-xl" />
-            </button>
-            <button
+                <FontAwesomeIcon icon={faChevronLeft} className="text-gray-100 text-3xl" />
+            </div>
+            <div className="absolute right-0 top-0 h-full w-20 flex items-center justify-center cursor-pointer"
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 p-2 rounded-full cursor-pointer"
             >
-                <FontAwesomeIcon icon={faChevronRight} className="text-white text-xl" />
-            </button>
+                <FontAwesomeIcon icon={faChevronRight} className="text-gray-100 text-3xl" />
+            </div>
 
             {/* Dots Indicator */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
