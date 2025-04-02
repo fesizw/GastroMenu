@@ -1,58 +1,17 @@
 "use client";
-import { useState, useRef, MouseEvent, TouchEvent } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { mockCardMenu, CardMenuType } from '@/mocks/mockCardMenu';
+import ScrollableContainer from '@/utils/scrollableContainer/scrollableContainer';
 
 export default function CardMenu() {
     const [selectedCard, setSelectedCard] = useState<number | null>(1);
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
 
-    const handleMouseDown = (e: MouseEvent) => {
-        setIsDragging(true);
-        setStartX(e.pageX - scrollRef.current!.offsetLeft);
-        setScrollLeft(scrollRef.current!.scrollLeft);
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - scrollRef.current!.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollRef.current!.scrollLeft = scrollLeft - walk;
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-        setIsDragging(true);
-        setStartX(e.touches[0].pageX - scrollRef.current!.offsetLeft);
-        setScrollLeft(scrollRef.current!.scrollLeft);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-        if (!isDragging) return;
-        const x = e.touches[0].pageX - scrollRef.current!.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollRef.current!.scrollLeft = scrollLeft - walk;
-    };
 
     return (
-        <div 
-            ref={scrollRef}
-            className="flex gap-4 p-4 overflow-x-auto cursor-grab active:cursor-grabbing"
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleMouseUp}
-            onTouchMove={handleTouchMove}
-        >
+
+        <ScrollableContainer>
+        <div className="flex gap-4 p-4">
             {mockCardMenu.map((card: CardMenuType) => (
                 <div
                     key={card.id}
@@ -86,5 +45,6 @@ export default function CardMenu() {
                 </div>
             ))}
         </div>
+        </ScrollableContainer>
     );
 }

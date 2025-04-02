@@ -29,6 +29,7 @@ body {
 /* Largura da barra de rolagem */
 ::-webkit-scrollbar {
   width: 8px;  /* Ajuste a largura conforme necessário */
+  height: 8px; /* Ajuste a altura conforme necessário */
 }
 
 /* Estilo do "thumb" (a parte colorida que o usuário arrasta) */
