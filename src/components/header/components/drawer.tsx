@@ -28,7 +28,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
                         onClick={onClose}
                     />
 
-                    <div className="fixed top-0 right-0 h-full w-[450px] bg-white shadow-lg duration-300 z-10">
+                    <div className="fixed top-0 right-0 h-full md:w-[450px] w-full bg-white shadow-lg duration-400 z-10">
                         <div className="flex justify-end items-center p-6 border-b">
                             <button onClick={onClose} className="text-gray-500 hover:text-red-700 cursor-pointer">
                                 <FontAwesomeIcon icon={faXmark} className="text-xl" />
