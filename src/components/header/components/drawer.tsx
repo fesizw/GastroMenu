@@ -18,7 +18,6 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
         return () => html.classList.remove('overflow-hidden');
     }, [isOpen]);
 
-
     return (
         <>
             {isOpen && (
