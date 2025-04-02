@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faLocationDot, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +9,16 @@ interface DrawerProps {
 }
 
 export default function Drawer({ isOpen, onClose }: DrawerProps) {
+
+    useEffect(() => {
+        const html = document.documentElement;
+        const toggleScroll = () => html.classList.toggle('overflow-hidden', isOpen);
+
+        toggleScroll();
+        return () => html.classList.remove('overflow-hidden');
+    }, [isOpen]);
+
+
     return (
         <>
             {isOpen && (
