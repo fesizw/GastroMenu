@@ -24,8 +24,8 @@ export default function SubCategorias({ subCategorias, corFundo }: SubCategorias
     };
 
     return (
-        <div className="w-full mt-4">
-            <div className="flex gap-2 pb-2 sticky top-0 bg-white z-5">
+        <div className="w-full mt-2">
+            <div className="flex gap-2 pb-2 sticky top-26 bg-orange-500 z-5">
                 {subCategorias.map((subCategoria) => (
                     <button
                         key={subCategoria.id}
