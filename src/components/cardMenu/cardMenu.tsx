@@ -18,9 +18,9 @@ export default function CardMenu() {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="px-4">
+            <div className="px-4 sticky top-0 z-10 bg-blue-600 py-2">
                 <ScrollableContainer>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 py-2">
                         {mockCardMenu.map((card: CardMenuType) => (
                             <div
                                 key={card.id}
