@@ -5,16 +5,16 @@ import Header from "@/components/header/header";
 export default function Menu() {
     return (
         <>
-            <div className="bg-white text-black w-full min-h-screen flex flex-col">
+            <div className="bg-white text-black w-full min-h-screen">
                 <Header />
                 <Carousel />
                 <div className="p-5 font-semibold text-center">
                     Name of establishment
                 </div>
                 <CardMenu />
-                <div className="bg-gray-500 flex-grow flex justify-center items-center">
+                {/* <div className="bg-gray-500">
                     in development..
-                </div>
+                </div> */}
             </div>
         </>
     );
