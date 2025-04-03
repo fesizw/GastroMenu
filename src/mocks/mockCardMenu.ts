@@ -215,7 +215,6 @@ export const mockCardMenu: CardMenuType[] = [
       },
     ],
   },
-  // Mantendo os outros itens do menu, mas adicionando produtos vazios para não estender demais o código
   {
     id: 2,
     nome: "Sushibar",

@@ -18,42 +18,44 @@ export default function CardMenu() {
 
     return (
         <div className="flex flex-col w-full">
-            <ScrollableContainer>
-                <div className="flex gap-4 p-4">
-                    {mockCardMenu.map((card: CardMenuType) => (
-                        <div
-                            key={card.id}
-                            onClick={() => setSelectedCard(card.id)}
-                            className={`
+            <div className="px-4">
+                <ScrollableContainer>
+                    <div className="flex gap-4">
+                        {mockCardMenu.map((card: CardMenuType) => (
+                            <div
+                                key={card.id}
+                                onClick={() => setSelectedCard(card.id)}
+                                className={`
                                 min-w-[150px] md:min-w-[200px] h-[50px] md:h-[70px] rounded-lg cursor-pointer
                                 transition-all duration-300 relative overflow-hidden
                                 ${selectedCard === card.id ? 'flex-1' : 'flex-none'}
                             `}
-                            style={{
-                                backgroundColor: selectedCard === card.id ? card.cor : 'transparent'
-                            }}
-                        >
-                            {selectedCard === card.id ? (
-                                <div className="flex items-center justify-center w-full h-full">
-                                    <h2 className="text-white text-[15px] md:text-xl font-semibold">{card.nome}</h2>
-                                </div>
-                            ) : (
-                                <div className="relative w-full h-full">
-                                    <Image
-                                        src={card.imagem}
-                                        alt={card.nome}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                style={{
+                                    backgroundColor: selectedCard === card.id ? card.cor : 'transparent'
+                                }}
+                            >
+                                {selectedCard === card.id ? (
+                                    <div className="flex items-center justify-center w-full h-full">
                                         <h2 className="text-white text-[15px] md:text-xl font-semibold">{card.nome}</h2>
                                     </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </ScrollableContainer>
+                                ) : (
+                                    <div className="relative w-full h-full">
+                                        <Image
+                                            src={card.imagem}
+                                            alt={card.nome}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                            <h2 className="text-white text-[15px] md:text-xl font-semibold">{card.nome}</h2>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </ScrollableContainer>
+            </div>
 
             {currentCard && (
                 <div className="px-4">

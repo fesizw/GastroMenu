@@ -16,7 +16,7 @@ export default function SubCategorias({ subCategorias, corFundo }: SubCategorias
     const handleSubCategoriaClick = (id: number) => {
         setSelectedSubCategoria(id);
 
-        // Scroll para a seção de produtos correspondente
+        // descer para a seção de produtos correspondente
         const element = document.getElementById(`produtos-${id}`);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -25,7 +25,7 @@ export default function SubCategorias({ subCategorias, corFundo }: SubCategorias
 
     return (
         <div className="w-full mt-4">
-            <div className="flex overflow-x-auto gap-2 pb-2 sticky top-0 bg-white z-10">
+            <div className="flex gap-2 pb-2 sticky top-0 bg-white z-5">
                 {subCategorias.map((subCategoria) => (
                     <button
                         key={subCategoria.id}
