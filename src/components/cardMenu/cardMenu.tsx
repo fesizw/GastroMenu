@@ -11,16 +11,20 @@ export default function CardMenu() {
     const [blueBarHeight, setBlueBarHeight] = useState(0);
     const blueBarRef = useRef<HTMLDivElement>(null);
 
+    const updateHeight = () => {
+        if (blueBarRef.current) {
+            setBlueBarHeight(blueBarRef.current.offsetHeight);
+        }
+    };
+
     useEffect(() => {
-        // Atualizar altura da barra azul
-        const updateHeight = () => {
-            if (blueBarRef.current) {
-                setBlueBarHeight(blueBarRef.current.offsetHeight);
-            }
-        };
         updateHeight();
         window.addEventListener("resize", updateHeight);
-        return () => window.removeEventListener("resize", updateHeight);
+        window.addEventListener("scroll", updateHeight);
+        return () => {
+            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("scroll", updateHeight);
+        };
     }, []);
 
     useEffect(() => {
