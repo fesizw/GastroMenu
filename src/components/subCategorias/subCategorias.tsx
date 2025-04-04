@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { SubCategoriaType } from '@/mocks/mockCardMenu';
 import Products from '@/components/products/products';
-import ScrollableContainer from '@/utils/scrollableContainer/scrollableContainer';
 
 interface SubCategoriasProps {
     subCategorias: SubCategoriaType[];

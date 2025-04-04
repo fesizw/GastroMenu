@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { mockCardMenu, CardMenuType } from '@/mocks/mockCardMenu';
-import ScrollableContainer from '@/utils/scrollableContainer/scrollableContainer';
 import SubCategorias from '@/components/subCategorias/subCategorias';
 
 export default function CardMenu() {
