@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { SubCategoriaType } from '@/mocks/mockCardMenu';
 import Products from '@/components/products/products';
+import ScrollableContainer from '@/utils/scrollableContainer/scrollableContainer';
 
 interface SubCategoriasProps {
     subCategorias: SubCategoriaType[];
@@ -27,24 +28,32 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
     return (
         <div className="w-full">
             <div
-                className="flex gap-2 pb-2 sticky bg-orange-500 z-[5] h-[60px]"
+                className="sticky bg-white z-[5] h-[60px] flex items-center"
                 style={{ top: `${blueBarHeight}px` }}
             >
-                {subCategorias.map((subCategoria) => (
-                    <button
-                        key={subCategoria.id}
-                        onClick={() => handleSubCategoriaClick(subCategoria.id)}
-                        className={`px-4 py-2 whitespace-nowrap rounded-md transition-all duration-300 ${selectedSubCategoria === subCategoria.id
-                            ? 'bg-opacity-100 text-white font-medium border-b-2 border-white'
-                            : 'bg-opacity-50 text-white'
-                            }`}
-                        style={{ backgroundColor: selectedSubCategoria === subCategoria.id ? corFundo : 'transparent', color: selectedSubCategoria === subCategoria.id ? 'white' : '#333' }}
-                    >
-                        {subCategoria.nome}
-                    </button>
-                ))}
+                <ScrollableContainer>
+                    <div className="flex gap-2 py-1">
+                        {subCategorias.map((subCategoria) => (
+                            <button
+                                key={subCategoria.id}
+                                onClick={() => handleSubCategoriaClick(subCategoria.id)}
+                                className={`px-4 py-2 rounded-md transition-all duration-300 ${selectedSubCategoria === subCategoria.id
+                                        ? 'bg-opacity-100 text-white font-medium border-b-2 border-white'
+                                        : 'bg-opacity-50 text-white'
+                                    }`}
+                                style={{
+                                    backgroundColor: selectedSubCategoria === subCategoria.id ? corFundo : 'transparent',
+                                    color: selectedSubCategoria === subCategoria.id ? 'white' : '#333',
+                                }}
+                            >
+                                {subCategoria.nome}
+                            </button>
+                        ))}
+                    </div>
+                </ScrollableContainer>
             </div>
-            <div className="h-1 w-full bg-gray-200 mt-2"></div>
+
+            <div className="h-2 w-full bg-gray-200 mt-5"></div>
 
             <div className="mt-4 space-y-8">
                 {subCategorias.map((subCategoria) => (
