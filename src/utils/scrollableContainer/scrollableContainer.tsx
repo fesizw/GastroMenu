@@ -7,6 +7,18 @@ export default function ScrollableContainer({ children }: { children: React.Reac
     const isDragging = useRef(false);
     const startX = useRef(0);
     const scrollLeft = useRef(0);
+    const moved = useRef(false);
+
+    const disableClickTemporarily = () => {
+        if (!scrollRef.current) return;
+        scrollRef.current.style.pointerEvents = "none";
+        // Reativa os cliques depois de 100ms
+        setTimeout(() => {
+            if (scrollRef.current) {
+                scrollRef.current.style.pointerEvents = "auto";
+            }
+        }, 100);
+    };
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
         if (!isDragging.current || !scrollRef.current) return;
@@ -14,9 +26,14 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         const x = e.pageX - scrollRef.current.offsetLeft;
         const walk = (x - startX.current) * 2;
         scrollRef.current.scrollLeft = scrollLeft.current - walk;
+        moved.current = true;
     }, []);
 
     const handleMouseUp = useCallback(() => {
+        if (moved.current) {
+            disableClickTemporarily();
+        }
+
         isDragging.current = false;
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
@@ -25,6 +42,7 @@ export default function ScrollableContainer({ children }: { children: React.Reac
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!scrollRef.current) return;
         isDragging.current = true;
+        moved.current = false;
         startX.current = e.pageX - scrollRef.current.offsetLeft;
         scrollLeft.current = scrollRef.current.scrollLeft;
 
@@ -35,6 +53,7 @@ export default function ScrollableContainer({ children }: { children: React.Reac
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         if (!scrollRef.current) return;
         isDragging.current = true;
+        moved.current = false;
         startX.current = e.touches[0].pageX - scrollRef.current.offsetLeft;
         scrollLeft.current = scrollRef.current.scrollLeft;
     };
@@ -43,7 +62,21 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         if (!isDragging.current || !scrollRef.current) return;
         const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
         const walk = (x - startX.current) * 2;
-        scrollRef.current.scrollLeft = scrollLeft.current - walk;
+
+        if (Math.abs(walk) > 5) {
+            scrollRef.current.scrollLeft = scrollLeft.current - walk;
+            moved.current = true;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        if (moved.current) {
+            disableClickTemporarily();
+        }
+
+        setTimeout(() => {
+            isDragging.current = false;
+        }, 0);
     };
 
     return (
@@ -53,7 +86,7 @@ export default function ScrollableContainer({ children }: { children: React.Reac
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseUp}
             onTouchStart={handleTouchStart}
-            onTouchEnd={handleMouseUp}
+            onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
         >
             {children}
