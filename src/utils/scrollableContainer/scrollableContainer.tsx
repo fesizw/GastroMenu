@@ -9,8 +9,11 @@ export default function ScrollableContainer({ children }: { children: React.Reac
     const scrollLeft = useRef(0);
     const moved = useRef(false);
 
+    // Função que desativa temporariamente os cliques somente se não for mobile
     const disableClickTemporarily = () => {
         if (!scrollRef.current) return;
+        // Se estivermos num dispositivo com touch, não desabilita os cliques
+        if ("ontouchstart" in window) return;
         scrollRef.current.style.pointerEvents = "none";
         // Reativa os cliques depois de 100ms
         setTimeout(() => {
@@ -33,7 +36,6 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         if (moved.current) {
             disableClickTemporarily();
         }
-
         isDragging.current = false;
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
@@ -45,7 +47,6 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         moved.current = false;
         startX.current = e.pageX - scrollRef.current.offsetLeft;
         scrollLeft.current = scrollRef.current.scrollLeft;
-
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
     };
@@ -62,7 +63,6 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         if (!isDragging.current || !scrollRef.current) return;
         const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
         const walk = (x - startX.current) * 2;
-
         if (Math.abs(walk) > 5) {
             scrollRef.current.scrollLeft = scrollLeft.current - walk;
             moved.current = true;
@@ -73,7 +73,6 @@ export default function ScrollableContainer({ children }: { children: React.Reac
         if (moved.current) {
             disableClickTemporarily();
         }
-
         setTimeout(() => {
             isDragging.current = false;
         }, 0);
