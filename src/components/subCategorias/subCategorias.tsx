@@ -73,19 +73,26 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
         if (!isDragging.current || !scrollContainerRef.current || e.touches.length !== 1) return;
         
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        if (!isIOS && Math.abs(scrollLeft.current - scrollContainerRef.current.scrollLeft) > 10) {
-            e.preventDefault();
+        if (isIOS) {
+            // Reduz a velocidade do scroll no iOS para evitar flick
+            const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft;
+            const walk = (x - startX.current) * 0.8; // Velocidade mais suave para iOS
+            requestAnimationFrame(() => {
+                if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
+                }
+            });
+        } else {
+            const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft;
+            const walk = (x - startX.current) * 1.5;
+            scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
         }
-        
-        const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft;
-        const walk = (x - startX.current) * 1.5;
-        scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
     };
 
     const handleTouchEnd = () => {
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             isDragging.current = false;
-        }, 100);
+        });
     };
 
     useEffect(() => {
@@ -112,6 +119,14 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
                 <div 
                     ref={scrollContainerRef}
                     className="overflow-x-auto scrollbar-hide w-full -mx-1 px-1 cursor-grab select-none"
+                    style={{ 
+                        WebkitOverflowScrolling: 'touch',
+                        WebkitBackfaceVisibility: 'hidden',
+                        WebkitTransform: 'translate3d(0,0,0)',
+                        transform: 'translate3d(0,0,0)',
+                        msOverflowStyle: 'none',  // Para IE e Edge
+                        scrollbarWidth: 'none'     // Para Firefox
+                    }}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
@@ -120,7 +135,6 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                     onTouchCancel={handleTouchEnd}
-                    style={{ WebkitOverflowScrolling: 'touch' }}
                 >
                     <div className="flex gap-2 py-1 min-w-min">
                         {subCategorias.map((subCategoria) => (
