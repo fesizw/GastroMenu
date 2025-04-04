@@ -1,6 +1,6 @@
-import CardMenu from "@/components/cardMenu/cardMenu";
 import Carousel from "@/components/carousel/carousel";
 import Header from "@/components/header/header";
+import MenuNavigation from "@/components/menuNavigation/menuNavigation";
 
 export default function Menu() {
     return (
@@ -11,7 +11,7 @@ export default function Menu() {
                 <div className="p-5 font-semibold text-center">
                     Name of establishment
                 </div>
-                <CardMenu />
+                <MenuNavigation />
                 {/* <div className="bg-gray-500">
                     in development..
                 </div> */}
