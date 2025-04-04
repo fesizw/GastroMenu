@@ -38,7 +38,7 @@ export default function CardMenu() {
     return (
         <div className="flex flex-col w-full">
             <div ref={blueBarRef} className="px-4 sticky top-0 z-[5] bg-white py-2">
-                <ScrollableContainer>
+                {/* <ScrollableContainer> */}
                     <div className="flex gap-4 py-2">
                         {mockCardMenu.map((card: CardMenuType) => (
                             <div
@@ -73,7 +73,7 @@ export default function CardMenu() {
                             </div>
                         ))}
                     </div>
-                </ScrollableContainer>
+                {/* </ScrollableContainer> */}
             </div>
 
             {currentCard && (

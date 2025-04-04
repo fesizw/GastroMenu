@@ -31,7 +31,7 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
                 className="sticky bg-white z-[5] h-[60px] flex items-center"
                 style={{ top: `${blueBarHeight}px` }}
             >
-                <ScrollableContainer>
+                {/* <ScrollableContainer> */}
                     <div className="flex gap-2 py-1">
                         {subCategorias.map((subCategoria) => (
                             <button
@@ -50,7 +50,7 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
                             </button>
                         ))}
                     </div>
-                </ScrollableContainer>
+                {/* </ScrollableContainer> */}
             </div>
 
             <div className="h-2 w-full bg-gray-200 mt-5"></div>
