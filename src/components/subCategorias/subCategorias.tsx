@@ -6,9 +6,10 @@ import Products from '@/components/products/products';
 interface SubCategoriasProps {
     subCategorias: SubCategoriaType[];
     corFundo: string;
+    blueBarHeight: number;
 }
 
-export default function SubCategorias({ subCategorias, corFundo }: SubCategoriasProps) {
+export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }: SubCategoriasProps) {
     const [selectedSubCategoria, setSelectedSubCategoria] = useState<number | null>(
         subCategorias.length > 0 ? subCategorias[0].id : null
     );
@@ -24,15 +25,18 @@ export default function SubCategorias({ subCategorias, corFundo }: SubCategorias
     };
 
     return (
-        <div className="w-full mt-2">
-            <div className="flex gap-2 pb-2 sticky top-26 bg-orange-500 z-5">
+        <div className="w-full">
+            <div
+                className="flex gap-2 pb-2 sticky bg-orange-500 z-[5] h-[60px]"
+                style={{ top: `${blueBarHeight}px` }}
+            >
                 {subCategorias.map((subCategoria) => (
                     <button
                         key={subCategoria.id}
                         onClick={() => handleSubCategoriaClick(subCategoria.id)}
                         className={`px-4 py-2 whitespace-nowrap rounded-md transition-all duration-300 ${selectedSubCategoria === subCategoria.id
-                                ? 'bg-opacity-100 text-white font-medium border-b-2 border-white'
-                                : 'bg-opacity-50 text-white'
+                            ? 'bg-opacity-100 text-white font-medium border-b-2 border-white'
+                            : 'bg-opacity-50 text-white'
                             }`}
                         style={{ backgroundColor: selectedSubCategoria === subCategoria.id ? corFundo : 'transparent', color: selectedSubCategoria === subCategoria.id ? 'white' : '#333' }}
                     >

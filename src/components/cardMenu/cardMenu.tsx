@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { mockCardMenu, CardMenuType } from '@/mocks/mockCardMenu';
 import ScrollableContainer from '@/utils/scrollableContainer/scrollableContainer';
@@ -8,6 +8,20 @@ import SubCategorias from '@/components/subCategorias/subCategorias';
 export default function CardMenu() {
     const [selectedCard, setSelectedCard] = useState<number | null>(1);
     const [currentCard, setCurrentCard] = useState<CardMenuType | null>(null);
+    const [blueBarHeight, setBlueBarHeight] = useState(0);
+    const blueBarRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // Atualizar altura da barra azul
+        const updateHeight = () => {
+            if (blueBarRef.current) {
+                setBlueBarHeight(blueBarRef.current.offsetHeight);
+            }
+        };
+        updateHeight();
+        window.addEventListener("resize", updateHeight);
+        return () => window.removeEventListener("resize", updateHeight);
+    }, []);
 
     useEffect(() => {
         if (selectedCard) {
@@ -18,7 +32,7 @@ export default function CardMenu() {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="px-4 sticky top-0 z-5 bg-blue-600 py-2">
+            <div ref={blueBarRef} className="px-4 sticky top-0 z-[5] bg-blue-600 py-2">
                 <ScrollableContainer>
                     <div className="flex gap-4 py-2">
                         {mockCardMenu.map((card: CardMenuType) => (
@@ -62,6 +76,7 @@ export default function CardMenu() {
                     <SubCategorias
                         subCategorias={currentCard.subCategorias}
                         corFundo={currentCard.cor}
+                        blueBarHeight={blueBarHeight}
                     />
                 </div>
             )}
