@@ -30,7 +30,7 @@ export default function MenuNavigation() {
     return (
         <div className="w-full">
             {/* Cards Menu Section */}
-            <div className="sticky top-0 z-5 bg-orange-400">
+            <div className="sticky top-0 z-5 bg-white">
                 <div className="px-4 overflow-x-auto scrollbar-hide py-2">
                     <div className="flex gap-4 min-w-min">
                         {mockCardMenu.map((card) => (
@@ -74,7 +74,7 @@ export default function MenuNavigation() {
 
                 {/* SubCategorias Section */}
                 {currentCard && currentCard.subCategorias.length > 0 && (
-                    <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2 border-t">
+                    <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2">
                         {currentCard.subCategorias.map((subCategoria) => (
                             <button
                                 key={subCategoria.id}
