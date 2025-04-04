@@ -16,11 +16,11 @@ export default function SubCategorias({ subCategorias, corFundo, blueBarHeight }
 
     const handleSubCategoriaClick = (id: number) => {
         setSelectedSubCategoria(id);
-
-        // descer para a seção de produtos correspondente
         const element = document.getElementById(`produtos-${id}`);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const offset = blueBarHeight + 60;
+            const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: topPosition, behavior: "smooth" });
         }
     };
 
