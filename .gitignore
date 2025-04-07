@@ -17,14 +17,14 @@
 /apps/front/!.yarn/plugins
 /apps/front/!.yarn/releases
 /apps/front/!.yarn/versions
-/apps/back/node_modules
-/apps/back/.pnp
-/apps/back/.pnp.*
-/apps/back/.yarn/*
-/apps/back/!.yarn/patches
-/apps/back/!.yarn/plugins
-/apps/back/!.yarn/releases
-/apps/back/!.yarn/versions
+/apps/api/node_modules
+/apps/api/.pnp
+/apps/api/.pnp.*
+/apps/api/.yarn/*
+/apps/api/!.yarn/patches
+/apps/api/!.yarn/plugins
+/apps/api/!.yarn/releases
+/apps/api/!.yarn/versions
 
 
 # testing
@@ -34,6 +34,9 @@
 apps/front/node_modules
 apps/front/.next
 apps/front/out
+/.turbo/*
+/apps/front/.turbo
+/apps/api/.turbo
 
 # production
 /apps/front/build
@@ -47,10 +50,11 @@ apps/front/out
 /apps/front/yarn-debug.log*
 /apps/front/yarn-error.log*
 /apps/front/.pnpm-debug.log*
+daemon/*
 
 # env files (can opt-in for committing if needed)
 /apps/front/.env*
-/apps/back/.env*
+/apps/api/.env*
 
 # vercel
 /apps/front/vercel
