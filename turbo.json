@@ -15,6 +15,9 @@
       "cache": false,
       "persistent": true
     },
+    "start": {
+      "cache": true
+    },
     "lint": {
       "outputs": []
     },
