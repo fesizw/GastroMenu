@@ -19,6 +19,7 @@ pnpm-lock.yaml
 /apps/front/!.yarn/releases
 /apps/front/!.yarn/versions
 /apps/api/node_modules
+/apps/api/dist
 /apps/api/.pnp
 /apps/api/.pnp.*
 /apps/api/.yarn/*
@@ -35,9 +36,9 @@ pnpm-lock.yaml
 apps/front/node_modules
 apps/front/.next
 apps/front/out
-/.turbo/*
 /apps/front/.turbo
 /apps/api/.turbo
+.turbo
 
 # production
 /apps/front/build
@@ -51,6 +52,7 @@ apps/front/out
 /apps/front/yarn-debug.log*
 /apps/front/yarn-error.log*
 /apps/front/.pnpm-debug.log*
+.turbo/daemon/*
 daemon/*
 
 # env files (can opt-in for committing if needed)

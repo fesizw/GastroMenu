@@ -1,7 +1,6 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import dotenv from 'dotenv'
-
+import * as dotenv from 'dotenv'
 
 
 dotenv.config({ path: '.env.local' })
