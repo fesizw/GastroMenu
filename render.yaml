@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: gastro-api
+    runtime: node
+    plan: free
+    rootDir: apps/api
+    buildCommand: pnpm install
+    startCommand: pnpm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: your_database_url_here
+      - key: JWT_SECRET
+        value: your_secret_key_here
+
+  - type: web
+    name: gastro-front
+    runtime: static
+    plan: free
+    rootDir: apps/front
+    buildCommand: pnpm install && pnpm build
+    autoDeploy: true
