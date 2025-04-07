@@ -9,33 +9,51 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/apps/front/node_modules
+/apps/front/.pnp
+/apps/front/.pnp.*
+/apps/front/.yarn/*
+/apps/front/!.yarn/patches
+/apps/front/!.yarn/plugins
+/apps/front/!.yarn/releases
+/apps/front/!.yarn/versions
+/apps/back/node_modules
+/apps/back/.pnp
+/apps/back/.pnp.*
+/apps/back/.yarn/*
+/apps/back/!.yarn/patches
+/apps/back/!.yarn/plugins
+/apps/back/!.yarn/releases
+/apps/back/!.yarn/versions
+
 
 # testing
 /coverage
 
 # next.js
-/.next/
-/out/
+/.next
+/out
 
 # production
-/build
+/apps/front/build
 
 # misc
 .DS_Store
 *.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+/apps/front/npm-debug.log*
+/apps/front/yarn-debug.log*
+/apps/front/yarn-error.log*
+/apps/front/.pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+/apps/front/.env*
+/apps/back/.env*
 
 # vercel
-.vercel
+/apps/front/vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+/apps/front/next-env.d.ts
