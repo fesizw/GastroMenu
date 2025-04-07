@@ -31,8 +31,9 @@
 /coverage
 
 # next.js
-/.next
-/out
+apps/front/node_modules
+apps/front/.next
+apps/front/out
 
 # production
 /apps/front/build
