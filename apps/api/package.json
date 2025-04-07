@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsx --noEmit",
-    "deploy": "pnpm build && pnpm start"
+    "deploy": "pnpm build && pnpm start",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",

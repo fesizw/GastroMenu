@@ -17,8 +17,9 @@ services:
 
   - type: web
     name: gastro-front
-    runtime: static
+    startCommand: pnpm start
+    buildCommand: pnpm install && pnpm build
+    runtime: node
     plan: free
     rootDir: apps/front
-    buildCommand: pnpm install && pnpm build
     autoDeploy: true
