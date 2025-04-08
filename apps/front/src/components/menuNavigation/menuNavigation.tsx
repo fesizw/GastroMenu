@@ -5,22 +5,22 @@ import { mockCardMenu } from '@/mocks/mockCardMenu';
 import Products from '@/components/products/products';
 
 export default function MenuNavigation() {
-    const [selectedCard, setSelectedCard] = useState<number>(mockCardMenu[0]?.id || 1);
+    const [selectedCard, setSelectedCard] = useState<number>(mockCardMenu[0]?.order || 1);
     const [selectedSubCategoria, setSelectedSubCategoria] = useState<number | null>(
-        mockCardMenu[0]?.subCategorias[0]?.id || null
+        mockCardMenu[0]?.subCategorias[0]?.order || null
     );
 
-    const currentCard = mockCardMenu.find(card => card.id === selectedCard);
+    const currentCard = mockCardMenu.find(card => card.order === selectedCard);
 
-    const handleCardClick = (cardId: number) => {
-        setSelectedCard(cardId);
-        const newCard = mockCardMenu.find(card => card.id === cardId);
-        setSelectedSubCategoria(newCard?.subCategorias[0]?.id || null);
+    const handleCardClick = (cardOrder: number) => {
+        setSelectedCard(cardOrder);
+        const newCard = mockCardMenu.find(card => card.order === cardOrder);
+        setSelectedSubCategoria(newCard?.subCategorias[0]?.order || null);
     };
 
-    const handleSubCategoriaClick = (id: number) => {
-        setSelectedSubCategoria(id);
-        const element = document.getElementById(`produtos-${id}`);
+    const handleSubCategoriaClick = (Order: number) => {
+        setSelectedSubCategoria(Order);
+        const element = document.getElementById(`produtos-${Order}`);
         if (element) {
             const topPosition = element.getBoundingClientRect().top + window.scrollY - 150;
             window.scrollTo({ top: topPosition, behavior: "smooth" });
@@ -35,18 +35,18 @@ export default function MenuNavigation() {
                     <div className="flex gap-4 min-w-min">
                         {mockCardMenu.map((card) => (
                             <button
-                                key={card.id}
-                                onClick={() => handleCardClick(card.id)}
+                                key={card.order}
+                                onClick={() => handleCardClick(card.order)}
                                 className={`
                                     min-w-[150px] md:min-w-[200px] h-[60px] md:h-[70px] rounded-lg 
                                     transition-all duration-300 relative overflow-hidden
-                                    ${selectedCard === card.id ? 'flex-1' : 'flex-none'}
+                                    ${selectedCard === card.order ? 'flex-1' : 'flex-none'}
                                 `}
                                 style={{
-                                    backgroundColor: selectedCard === card.id ? card.cor : 'transparent'
+                                    backgroundColor: selectedCard === card.order ? card.cor : 'transparent'
                                 }}
                             >
-                                {selectedCard === card.id ? (
+                                {selectedCard === card.order ? (
                                     <div className="flex items-center justify-center w-full h-full">
                                         <h2 className="text-white text-[15px] md:text-xl font-semibold">
                                             {card.nome}
@@ -77,16 +77,15 @@ export default function MenuNavigation() {
                     <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2)]">
                         {currentCard.subCategorias.map((subCategoria) => (
                             <button
-                                key={subCategoria.id}
-                                onClick={() => handleSubCategoriaClick(subCategoria.id)}
-                                className={`px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap h-[50px] ${
-                                    selectedSubCategoria === subCategoria.id
-                                        ? 'text-white'
-                                        : 'text-gray-700 hover:bg-gray-100'
-                                }`}
+                                key={subCategoria.order}
+                                onClick={() => handleSubCategoriaClick(subCategoria.order)}
+                                className={`px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap h-[50px] ${selectedSubCategoria === subCategoria.order
+                                    ? 'text-white'
+                                    : 'text-gray-700 hover:bg-gray-100'
+                                    }`}
                                 style={{
-                                    backgroundColor: selectedSubCategoria === subCategoria.id 
-                                        ? currentCard.cor 
+                                    backgroundColor: selectedSubCategoria === subCategoria.order
+                                        ? currentCard.cor
                                         : 'transparent'
                                 }}
                             >
@@ -102,10 +101,10 @@ export default function MenuNavigation() {
                 <div className="mt-4 space-y-8 px-4">
                     {currentCard.subCategorias.map((subCategoria) => (
                         <Products
-                            key={subCategoria.id}
+                            key={subCategoria.order}
                             produtos={subCategoria.produtos}
                             titulo={subCategoria.nome}
-                            id={`produtos-${subCategoria.id}`}
+                            id={`produtos-${subCategoria.order}`}
                         />
                     ))}
                 </div>
