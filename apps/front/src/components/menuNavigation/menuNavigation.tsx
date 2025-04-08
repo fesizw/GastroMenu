@@ -38,7 +38,7 @@ export default function MenuNavigation() {
                                 key={card.id}
                                 onClick={() => handleCardClick(card.id)}
                                 className={`
-                                    min-w-[150px] md:min-w-[200px] h-[50px] md:h-[70px] rounded-lg 
+                                    min-w-[150px] md:min-w-[200px] h-[60px] md:h-[70px] rounded-lg 
                                     transition-all duration-300 relative overflow-hidden
                                     ${selectedCard === card.id ? 'flex-1' : 'flex-none'}
                                 `}
@@ -74,12 +74,12 @@ export default function MenuNavigation() {
 
                 {/* SubCategorias Section */}
                 {currentCard && currentCard.subCategorias.length > 0 && (
-                    <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2">
+                    <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2)]">
                         {currentCard.subCategorias.map((subCategoria) => (
                             <button
                                 key={subCategoria.id}
                                 onClick={() => handleSubCategoriaClick(subCategoria.id)}
-                                className={`px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap ${
+                                className={`px-4 py-2 rounded-md transition-all duration-300 whitespace-nowrap h-[50px] ${
                                     selectedSubCategoria === subCategoria.id
                                         ? 'text-white'
                                         : 'text-gray-700 hover:bg-gray-100'
