@@ -43,26 +43,26 @@ export default function MenuNavigation() {
                                     ${selectedCard === card.order ? 'flex-1' : 'flex-none'}
                                 `}
                                 style={{
-                                    backgroundColor: selectedCard === card.order ? card.cor : 'transparent'
+                                    backgroundColor: selectedCard === card.order ? card.color : 'transparent'
                                 }}
                             >
                                 {selectedCard === card.order ? (
                                     <div className="flex items-center justify-center w-full h-full">
                                         <h2 className="text-white text-[15px] md:text-xl font-semibold">
-                                            {card.nome}
+                                            {card.name}
                                         </h2>
                                     </div>
                                 ) : (
                                     <div className="relative w-full h-full">
                                         <Image
-                                            src={card.imagem}
-                                            alt={card.nome}
+                                            src={card.image}
+                                            alt={card.name}
                                             fill
                                             className="object-cover"
                                         />
                                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                                             <h2 className="text-white text-[15px] md:text-xl font-semibold">
-                                                {card.nome}
+                                                {card.name}
                                             </h2>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@ export default function MenuNavigation() {
                                     }`}
                                 style={{
                                     backgroundColor: selectedSubCategoria === subCategoria.order
-                                        ? currentCard.cor
+                                        ? currentCard.color
                                         : 'transparent'
                                 }}
                             >

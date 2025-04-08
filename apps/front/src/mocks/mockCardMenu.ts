@@ -10,14 +10,15 @@ export interface RestauranteStatusType {
   carouselPhotos: string[];
   description: string;
   active: boolean;
+  categories: CardMenuType[];
 }
 
 export interface CardMenuType {
   id: string;
   order: number;
-  nome: string;
-  cor: string;
-  imagem: string;
+  name: string;
+  color: string;
+  image: string;
   subCategorias: SubCategoriaType[];
 }
 
@@ -42,9 +43,9 @@ export const mockCardMenu: CardMenuType[] = [
   {
     id: "1",
     order: 1,
-    nome: "Menu Principal",
-    cor: "#8B6144",
-    imagem: "https://img.cdndsgni.com/preview/11099453.jpg",
+    name: "Menu Principal",
+    color: "#8B6144",
+    image: "https://img.cdndsgni.com/preview/11099453.jpg",
     subCategorias: [
       {
         id: "101",
@@ -262,9 +263,9 @@ export const mockCardMenu: CardMenuType[] = [
   {
     id: "2",
     order: 2,
-    nome: "Sushibar",
-    cor: "#A64B2A",
-    imagem:
+    name: "Sushibar",
+    color: "#A64B2A",
+    image:
       "https://www.zapimoveis.com.br/blog/wp-content/uploads/2024/01/dia-do-sushi-no-brasil.jpg",
     subCategorias: [
       { id: "201", order: 201, nome: "Sashimi", produtos: [] },
@@ -276,9 +277,9 @@ export const mockCardMenu: CardMenuType[] = [
   {
     id: "3",
     order: 3,
-    nome: "Carta de Vinhos",
-    cor: "#722F37",
-    imagem:
+    name: "Carta de Vinhos",
+    color: "#722F37",
+    image:
       "https://www.divvino.com.br/blog/wp-content/uploads/2020/03/garrafas-de-vinho.jpg",
     subCategorias: [
       { id: "301", order: 301, nome: "Tintos" },
@@ -290,23 +291,23 @@ export const mockCardMenu: CardMenuType[] = [
   {
     id: "4",
     order: 4,
-    nome: "Carta de Sake",
-    cor: "#C0C0C0",
-    imagem:
+    name: "Carta de Sake",
+    color: "#C0C0C0",
+    image:
       "https://www.guiadasemana.com.br/contentFiles/system/pictures/2011/9/25280/original/garrafas-saque.jpg",
     subCategorias: [
       { id: "401", order: 401, nome: "Junmai" },
-      { id: "402", order: 401, nome: "Ginjo" },
-      { id: "403", order: 401, nome: "Daiginjo" },
-      { id: "404", order: 401, nome: "Especiais" },
+      { id: "402", order: 402, nome: "Ginjo" },
+      { id: "403", order: 403, nome: "Daiginjo" },
+      { id: "404", order: 404, nome: "Especiais" },
     ],
   },
   {
     id: "5",
     order: 5,
-    nome: "Bebidas",
-    cor: "#2E8B57",
-    imagem:
+    name: "Bebidas",
+    color: "#2E8B57",
+    image:
       "https://img.freepik.com/fotos-premium/bebidas-refrigeradas-mezcla-sabores-experiencia-refrescante-concept-mocktail-recetas-bebidas-verano-bebidas-refrescantes-cocteles-refrigerados-bebidas-sabrosas_864588-54183.jpg",
     subCategorias: [
       { id: "501", order: 501, nome: "Refrigerantes" },
@@ -318,9 +319,9 @@ export const mockCardMenu: CardMenuType[] = [
   {
     id: "6",
     order: 6,
-    nome: "Teste",
-    cor: "orange",
-    imagem:
+    name: "Teste",
+    color: "orange",
+    image:
       "https://swiftbr.vteximg.com.br/arquivos/churrasco-completo-de-dia-dos-pais.jpg",
     subCategorias: [
       { id: "601", order: 601, nome: "Opção 1" },
