@@ -7,7 +7,7 @@ import Products from '@/components/products/products';
 export default function MenuNavigation() {
     const [selectedCard, setSelectedCard] = useState<number>(mockCardMenu[0]?.order || 1);
     const [selectedSubCategoria, setSelectedSubCategoria] = useState<number | null>(
-        mockCardMenu[0]?.subCategorias[0]?.order || null
+        mockCardMenu[0]?.subcategories[0]?.order || null
     );
 
     const currentCard = mockCardMenu.find(card => card.order === selectedCard);
@@ -15,7 +15,7 @@ export default function MenuNavigation() {
     const handleCardClick = (cardOrder: number) => {
         setSelectedCard(cardOrder);
         const newCard = mockCardMenu.find(card => card.order === cardOrder);
-        setSelectedSubCategoria(newCard?.subCategorias[0]?.order || null);
+        setSelectedSubCategoria(newCard?.subcategories[0]?.order || null);
     };
 
     const handleSubCategoriaClick = (Order: number) => {
@@ -73,9 +73,9 @@ export default function MenuNavigation() {
                 </div>
 
                 {/* SubCategorias Section */}
-                {currentCard && currentCard.subCategorias.length > 0 && (
+                {currentCard && currentCard.subcategories.length > 0 && (
                     <div className="flex items-center gap-2 px-4 overflow-x-auto scrollbar-hide py-2 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2)]">
-                        {currentCard.subCategorias.map((subCategoria) => (
+                        {currentCard.subcategories.map((subCategoria) => (
                             <button
                                 key={subCategoria.order}
                                 onClick={() => handleSubCategoriaClick(subCategoria.order)}
@@ -89,7 +89,7 @@ export default function MenuNavigation() {
                                         : 'transparent'
                                 }}
                             >
-                                {subCategoria.nome}
+                                {subCategoria.name}
                             </button>
                         ))}
                     </div>
@@ -99,11 +99,11 @@ export default function MenuNavigation() {
             {/* Products Section */}
             {currentCard && (
                 <div className="mt-4 space-y-8 px-4">
-                    {currentCard.subCategorias.map((subCategoria) => (
+                    {currentCard.subcategories.map((subCategoria) => (
                         <Products
                             key={subCategoria.order}
-                            produtos={subCategoria.produtos}
-                            titulo={subCategoria.nome}
+                            produtos={subCategoria.products}
+                            titulo={subCategoria.name}
                             id={`produtos-${subCategoria.order}`}
                         />
                     ))}

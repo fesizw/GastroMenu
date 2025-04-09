@@ -1,9 +1,9 @@
 "use client";
 import Image from 'next/image';
-import { ProdutoType } from '@/mocks/mockCardMenu';
+import { ProductsType } from '@/mocks/mockCardMenu';
 
 interface ProductsProps {
-    produtos?: ProdutoType[] | undefined;
+    produtos?: ProductsType[] | undefined;
     titulo: string;
     id: string;
 }
@@ -20,10 +20,10 @@ export default function Products({ produtos, titulo, id }: ProductsProps) {
                 {produtos?.map((produto) => (
                     <div key={produto.id} className="flex flex-col justify-between items-start gap-4 pb-6 border-b border-gray-200">
                         <div className="flex-1 w-full">
-                            <h3 className="text-lg font-bold uppercase text-gray-800">{produto.nome}</h3>
-                            <p className="text-gray-600 mt-1">{produto.descricao}</p>
+                            <h3 className="text-lg font-bold uppercase text-gray-800">{produto.name}</h3>
+                            <p className="text-gray-600 mt-1">{produto.description}</p>
                             <div className="mt-2 flex items-center gap-2">
-                                <p className="font-semibold text-gray-800">R$ {produto.preco.toFixed(2)}</p>
+                                <p className="font-semibold text-gray-800">R$ {produto.value.toFixed(2)}</p>
                                 <button className="text-blue-600 hover:underline text-sm">Saiba mais</button>
                                 {produto.vegetariano && (
                                     <span className="text-green-600 text-sm flex items-center gap-1">
@@ -33,11 +33,11 @@ export default function Products({ produtos, titulo, id }: ProductsProps) {
                                 )}
                             </div>
                         </div>
-                        {produto.imagem && (
+                        {produto.image && (
                             <div className="w-full md:w-32 h-32 relative rounded-lg overflow-hidden">
                                 <Image
-                                    src={produto.imagem}
-                                    alt={produto.nome}
+                                    src={produto.image}
+                                    alt={produto.name}
                                     fill
                                     className="object-cover"
                                 />
